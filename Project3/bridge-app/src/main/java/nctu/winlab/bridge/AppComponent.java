@@ -128,7 +128,7 @@ public class AppComponent{
         public void process(PacketContext context) {
             
             if (context.isHandled()) {
-                return;
+		return;
             }
             InboundPacket pkt = context.inPacket();
             Ethernet ethPkt = pkt.parsed();
@@ -161,6 +161,7 @@ public class AppComponent{
             macAddressTable.put(macAddress, portNumber);
             table.put(deviceId, macAddressTable);
         }
+	log.info("Packet-in from device" + deviceId.toString());
     }
     private void packetOut(PacketContext context, PortNumber portNumber) {
         context.treatmentBuilder().setOutput(portNumber);
